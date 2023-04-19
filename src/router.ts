@@ -1,6 +1,7 @@
 import { Router } from "express"
 import { body } from "express-validator"
 import { handleInputErrors } from "./modules/middleware"
+import { createProduct, getProducts } from "./handlers/product"
 
 const router = Router()
 
@@ -8,9 +9,7 @@ const router = Router()
  * Product
  */
 
-router.get("/product", (req, res) => {
-  res.json({ message: "Hello World!" })
-})
+router.get("/product", getProducts)
 router.get("/product/:id", () => {})
 router.put(
   "/product/:id",
@@ -22,7 +21,7 @@ router.post(
   "/product",
   body("name").isString(),
   handleInputErrors,
-  (req, res) => {}
+  createProduct
 )
 router.delete("/product/:id", () => {})
 
