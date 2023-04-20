@@ -38,7 +38,7 @@ export const signin = async (req, res) => {
     }
 
     const token = await createJWT(user)
-    res.json({ token })
+    res.json({ token, user })
   } catch (e) {
     res.status(500).json({ message: "Something went wrong" })
     console.log(e)
