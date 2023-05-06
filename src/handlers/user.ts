@@ -20,9 +20,14 @@ export const createNewUser = async (req, res) => {
 
 export const signin = async (req, res) => {
   try {
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findUniqueOrThrow({
       where: {
         username: req.body.username,
+      },
+      select: {
+        id: true,
+        username: true,
+        password: true,
       },
     })
 
